@@ -21,7 +21,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка отображения главного баннера")
     void checkMainBanner() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://demoqa.com/automation-practice-form");
+            open("https://www.auchan.ru/");
         });
 
         step("Проверить отображение баннера", () -> {
