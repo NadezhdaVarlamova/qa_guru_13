@@ -21,7 +21,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка отображения главного баннера")
     void checkMainBanner() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://tvoydom.ru/");
         });
 
         step("Проверить отображение баннера", () -> {
@@ -34,7 +34,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка отображения баннера брендов")
     void checkBannerBrands() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://tvoydom.ru/");
         });
 
         step("Проверить отображение баннера брендов", () -> {
@@ -47,7 +47,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка отображения каталога")
     void checkCatalog() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://tvoydom.ru/");
         });
 
         step("Проверить отображение каталога", () -> {
@@ -60,7 +60,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка перехода в корзину")
     void checkGoToCart() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://tvoydom.ru/");
         });
 
         step("Кликнуть на корзину", () -> {
@@ -78,7 +78,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка перехода к авторизации")
     void checkGoToLogin() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://tvoydom.ru/");
         });
 
         step("Кликнуть на вход", () -> {
@@ -96,7 +96,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Page title should have header text")
     void titleTest() {
         step("Open url 'https://www.auchan.ru/'", () ->
-            open("https://www.auchan.ru/"));
+            open("https://tvoydom.ru/"));
 
         step("Page title should have text 'HTTP 403'", () -> {
             String expectedTitle = "HTTP 403";
@@ -111,7 +111,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Page console log should not have errors")
     void consoleShouldNotHaveErrorsTest() {
         step("Open url 'https://www.auchan.ru/'", () ->
-            open("https://www.auchan.ru/"));
+            open("https://tvoydom.ru/"));
 
         step("Console logs should not contain text 'SEVERE'", () -> {
             String consoleLogs = DriverUtils.getConsoleLogs();
