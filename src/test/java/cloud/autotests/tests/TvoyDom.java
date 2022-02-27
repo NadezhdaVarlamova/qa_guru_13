@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TvoyDom extends TestBase {
     @BeforeAll
-    void closePopup(){
+    static void closePopup(){
         step("Открыть https://tvoydom.ru/", () -> {
             open("https://tvoydom.ru/");
         });
