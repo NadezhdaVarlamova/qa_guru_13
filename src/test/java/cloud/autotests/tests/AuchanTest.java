@@ -47,7 +47,7 @@ public class AuchanTest extends TestBase {
     @DisplayName("Проверка отображения каталога")
     void checkCatalog() {
         step("Открыть https://www.auchan.ru/", () -> {
-            open("https://www.auchan.ru/");
+            open("https://www.auchan.ru");
         });
 
         step("Проверить отображение каталога", () -> {
