@@ -3,6 +3,7 @@ package cloud.autotests.tests;
 import cloud.autotests.helpers.DriverUtils;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TvoyDom extends TestBase {
+    @BeforeAll
+    void closePopup(){
+        step("Открыть https://tvoydom.ru/", () -> {
+            open("https://tvoydom.ru/");
+        });
+        step("Закрыть попап подарок", () -> {
+            $(".popmechanic-close").click();
+        });
+    }
+
     @Test
     @Description("Тест на главной странице Твой Дом")
     @DisplayName("Проверка отображения главного баннера")
@@ -38,12 +49,12 @@ public class TvoyDom extends TestBase {
             open("https://tvoydom.ru/");
         });
 
-        step("Кликнуть на меню", () -> {
-            $x("//button[@title=\"Открыть меню\"]").click();
+        step("Кликнуть на каталог", () -> {
+            $(".header-main__menu-link").click();
         });
 
-        step("Проверить отображение надписи", () -> {
-            $(".popup__hl menu__hl").shouldHave(text("Меню"));
+        step("Проверить отображение каталога", () -> {
+            $(".catalog-menu-dropdown__menu").shouldBe(visible);
         });
     }
 
@@ -56,7 +67,7 @@ public class TvoyDom extends TestBase {
         });
 
         step("Кликнуть на корзину", () -> {
-            $x("//a[@title=\"Корзина\"]").click();
+            $x("//button[@title=\"Корзина\"]").click();
         });
 
         step("Проверить url", () -> {
@@ -67,18 +78,19 @@ public class TvoyDom extends TestBase {
 
     @Test
     @Description("Тест главной страницы Твой дом")
-    @DisplayName("Проверка перехода к поиску")
+    @DisplayName("Проверка перехода к сравнению")
     void checkGoToSearch() {
         step("Открыть https://tvoydom.ru/", () -> {
             open("https://tvoydom.ru/");
         });
 
-        step("Кликнуть на поиск", () -> {
-            $x("//a[@title=\"Поиск\"]").click();
+        step("Кликнуть на сравнение", () -> {
+            $x("//a[@title=\"Сравнение\"]").click();
         });
 
-        step("Проверить наличие текста в попапе поиска", () -> {
-            $(".popup__hl popup__hl--search").shouldHave(text("Поиск"));
+        step("Проверить url", () -> {
+            String urlPage = WebDriverRunner.url();
+            assertEquals(urlPage, "https://tvoydom.ru/compare/");
         });
     }
 
