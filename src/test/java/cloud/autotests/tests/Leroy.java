@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class TvoyDom extends TestBase {
+public class Leroy extends TestBase {
 
     @BeforeEach
     public void ClosePopup(){
@@ -38,14 +38,14 @@ public class TvoyDom extends TestBase {
 
     @Test
     @Description("Тест на главной странице Леруа")
-    @DisplayName("Проверка отображения меню")
+    @DisplayName("Проверка отображения каталога")
     void checkMenu() {
         step("Кликнуть на каталог", () -> {
             $x("//uc-catalog-button-v2[@data-name=\"catalogue\"]/a").click();
         });
 
         step("Проверить отображение каталога", () -> {
-            $(".title-button-name").shouldBe(visible).shouldHave(text("Каталог"));
+            $(".list-banner-wrap").shouldBe(visible);
         });
     }
 
@@ -82,7 +82,7 @@ public class TvoyDom extends TestBase {
     @DisplayName("Проверка отображения проектов клиентов")
     void checkGoToLogin() {
         step("Проверить наличие проектов клинтов", () -> {
-            $x("//div[@class=\"bzfy-o-layout\"]").shouldBe(visible);
+            $x("//div[@class=\"bzfy-o-layout\"]").scrollTo().shouldBe(visible);
         });
     }
 
