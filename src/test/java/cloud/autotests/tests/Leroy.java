@@ -41,11 +41,12 @@ public class Leroy extends TestBase {
     @DisplayName("Проверка отображения каталога")
     void checkMenu() {
         step("Кликнуть на каталог", () -> {
-            $x("//uc-catalog-button-v2[@data-name=\"catalogue\"]/a").click();
+            $x("(//a[text()=\"Каталог\"])[3]").click();
         });
 
-        step("Проверить отображение каталога", () -> {
-            $(".list-banner-wrap").shouldBe(visible);
+        step("Проверить url", () -> {
+            String urlPage = WebDriverRunner.url();
+            assertEquals(urlPage, "https://leroymerlin.ru/catalogue/");
         });
     }
 
@@ -81,9 +82,8 @@ public class Leroy extends TestBase {
     @Description("Тест главной страницы Леруа")
     @DisplayName("Проверка отображения проектов клиентов")
     void checkGoToLogin() {
-        step("Проверить наличие проектов клинтов", () -> {
-            $x("//div[@class=\"bzfy-o-layout\"]").scrollTo();
-            $x("//div[@class=\"bzfy-o-layout\"]").shouldBe(visible);
+        step("Проверить наличие промо баннера", () -> {
+            $x("//div[@class=\"promo-banners\"]").shouldBe(visible);
         });
     }
 
