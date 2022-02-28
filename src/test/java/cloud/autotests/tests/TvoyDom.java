@@ -1,7 +1,6 @@
 package cloud.autotests.tests;
 
 import cloud.autotests.helpers.DriverUtils;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,12 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,77 +21,68 @@ public class TvoyDom extends TestBase {
 
     @BeforeEach
     public void ClosePopup(){
-        Configuration.pageLoadTimeout = 60000;
-        step("Открыть https://tvoydom.ru/", () -> {
-            open("https://tvoydom.ru/");
-        });
-        getWebDriver().manage().timeouts().pageLoadTimeout(60000, TimeUnit.MILLISECONDS);
-        step("Закрыть попап подарок", () -> {
-            $(".popmechanic-close").click();
+        step("Открыть https://leroymerlin.ru/", () -> {
+            open("https://leroymerlin.ru/");
         });
     }
 
 
     @Test
-    @Description("Тест на главной странице Твой Дом")
+    @Description("Тест на главной странице Леруа")
     @DisplayName("Проверка отображения главного баннера")
     void checkMainBanner() {
         step("Проверить отображение баннера", () -> {
-            $("#carousel-homepage").shouldBe(visible);
+            $("#tns1-mw").shouldBe(visible);
         });
     }
 
     @Test
-    @Description("Тест на главной странице Твой Дом")
+    @Description("Тест на главной странице Леруа")
     @DisplayName("Проверка отображения меню")
     void checkMenu() {
         step("Кликнуть на каталог", () -> {
-            $(".header-main__menu-link").click();
+            $x("//uc-catalog-button-v2[@data-name=\"catalogue\"]/a").click();
         });
 
         step("Проверить отображение каталога", () -> {
-            $(".catalog-menu-dropdown__menu").shouldBe(visible);
+            $(".title-button-name").shouldBe(visible).shouldHave(text("Каталог"));
         });
     }
 
     @Test
-    @Description("Тест главной страницы Твой Дом")
+    @Description("Тест главной страницы Леруа")
     @DisplayName("Проверка перехода в корзину")
     void checkGoToCart() {
         step("Кликнуть на корзину", () -> {
-            $x("//button[@title=\"Корзина\"]").click();
+            $x("//a[@slot=\"basket\"]").click();
         });
 
         step("Проверить url", () -> {
             String urlPage = WebDriverRunner.url();
-            assertEquals(urlPage, "https://tvoydom.ru/cart/");
+            assertEquals(urlPage, "https://leroymerlin.ru/basket/");
         });
     }
 
     @Test
-    @Description("Тест главной страницы Твой дом")
-    @DisplayName("Проверка перехода к сравнению")
+    @Description("Тест главной страницы Леруа")
+    @DisplayName("Проверка перехода к магазинам")
     void checkGoToSearch() {
-        step("Кликнуть на сравнение", () -> {
-            $x("//a[@title=\"Сравнение\"]").click();
+        step("Кликнуть Магазины", () -> {
+            $x("(//a[@slot=\"shops\"])[2]").click();
         });
 
         step("Проверить url", () -> {
             String urlPage = WebDriverRunner.url();
-            assertEquals(urlPage, "https://tvoydom.ru/compare/");
+            assertEquals(urlPage, "https://leroymerlin.ru/shop/");
         });
     }
 
     @Test
-    @Description("Тест главной страницы Твой Дом")
-    @DisplayName("Проверка перехода к авторизации")
+    @Description("Тест главной страницы Леруа")
+    @DisplayName("Проверка отображения проектов клиентов")
     void checkGoToLogin() {
-        step("Кликнуть на вход", () -> {
-            $x("//a[@title=\"Авторизация\"]").click();
-        });
-
-        step("Проверить наличие текста в попапе авторизации", () -> {
-            $x("(//div[@class=\"popup__body\"]/h2)[8]").shouldHave(text("Вход или регистрация"));
+        step("Проверить наличие проектов клинтов", () -> {
+            $x("//div[@class=\"bzfy-o-layout\"]").shouldBe(visible);
         });
     }
 
