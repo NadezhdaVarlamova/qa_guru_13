@@ -82,7 +82,8 @@ public class Leroy extends TestBase {
     @DisplayName("Проверка отображения проектов клиентов")
     void checkGoToLogin() {
         step("Проверить наличие проектов клинтов", () -> {
-            $x("//div[@class=\"bzfy-o-layout\"]").scrollTo().shouldBe(visible);
+            $x("//div[@class=\"bzfy-o-layout\"]").scrollTo();
+            $x("//div[@class=\"bzfy-o-layout\"]").shouldBe(visible);
         });
     }
 
