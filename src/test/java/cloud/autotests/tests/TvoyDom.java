@@ -1,6 +1,7 @@
 package cloud.autotests.tests;
 
 import cloud.autotests.helpers.DriverUtils;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,9 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.concurrent.TimeUnit;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,9 +24,11 @@ public class TvoyDom extends TestBase {
 
     @BeforeEach
     public void ClosePopup(){
+        Configuration.pageLoadTimeout = 60000;
         step("Открыть https://tvoydom.ru/", () -> {
             open("https://tvoydom.ru/");
         });
+        getWebDriver().manage().timeouts().pageLoadTimeout(60000, TimeUnit.MILLISECONDS);
         step("Закрыть попап подарок", () -> {
             $(".popmechanic-close").click();
         });
