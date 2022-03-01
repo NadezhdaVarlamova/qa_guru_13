@@ -1,46 +1,95 @@
-# Проект автоматизации тестирования для Леруа Мерлен
+# Проект автоматизации тестирования для <a target="_blank" href="https://leroymerlin.ru/">Леруа Мерлен</a> <img src="img/logo/leroy-merlin-logo@logotyp.us.svg" width="50" height="50"  alt="IDEA"/>
 
-# Project in Allure TestOps with manual & automated tests
-<a target="_blank" href="https://allure.autotests.cloud/project/%s">allure.autotests.cloud/project/%s</a> (ask admin@qa.guru for access)
+## :open_book: Содержание:
+- [Технологии и инструменты](#gear-технологии-и-инструменты)
+- [Что проверяем](#heavy_check_mark-что-проверяем)
+- [Запуск тестов из Jenkins](#-запуск-тестов-из-jenkins)
+- [Запуск тестов из терминала](#computer-запуск-тестов-из-терминала)
+- [Отчеты](#bar_chart-отчеты)
+- - [Allure](#-allure)
+- - [Telegram](#-telegram)
+- [Видео с прогоном тестов](#movie_camera-видео-с-прогоном-тестов)
 
-# Jenkins job
-<a target="_blank" href="https://jenkins.autotests.cloud/job/%s">jenkins.autotests.cloud/job/%s</a>
+## :gear: Технологии и инструменты
 
+<p align="center">
+<img src="img/logo/Idea.svg" width="50" height="50"  alt="IDEA"/>
+<img src="img/logo/Java.svg" width="50" height="50"  alt="Java"/>
+<img src="img/logo/GitHub.svg" width="50" height="50"  alt="Github"/>
+<img src="img/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/>
+<img src="img/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/>
+<img src="img/logo/Selenide.svg" width="50" height="50"  alt="Selenide"/>
+<img src="img/logo/Selenoid.svg" width="50" height="50"  alt="Selenoid"/
+<img src="img/logo/Allure.svg" width="50" height="50"  alt="Allure"/>
+<img src="img/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/>
+<img src="img/logo/Telegram.svg" width="50" height="50"  alt="Telegram"/>
+<img src="img/logo/Allure.svg" width="50" height="50"  alt="Allure"/>
+<img src="img/logo/Allure_TO.svg" width="50" height="50"  alt="Allure_TO"/>
+<img src="img/logo/Jira.svg" width="50" height="50"  alt="Jira"/>
+</p>
 
-# USAGE examples
+## :heavy_check_mark: Что проверяем
 
-### For run remote tests need fill remote.properties or to pass value:
+> - Отображение главного баннера;
+> - Отображение второго баннера;
+> - Отображение промо баннера;
+> - Переход в корзину;
+> - Переход к магазинам.
 
-* browser (default chrome)
-* browserVersion (default 89.0)
-* browserSize (default 1920x1080)
-* browserMobileView (mobile device name, for example iPhone X)
-* remoteDriverUrl (url address from selenoid or grid)
-* videoStorage (url address where you should get video)
-* threads (number of threads)
+## <img width="4%" title="Jenkins" src="img/logo/Jenkins.svg"> Запуск тестов из [Jenkins](https://jenkins.autotests.cloud/job/AUTO-679/)
 
+Для запуска тестов из Jenkins:
+1. Необходимо нажать кнопку "Собрать с параметрами".
+<img src="img/screen/Screenshot_20.jpg" alt="Jenkins"/>
+2. Выбрать параметры.
+<img src="img/screen/Screenshot_21.jpg" alt="Jenkins"/>
+3. Нажать кнопку "Собрать".
 
-Run tests with filled remote.properties:
-```bash
+### :heavy_plus_sign: Параметры сборки
+> - REPOSITORY (проект)
+> - BROWSER (браузер)
+> - BROWSER_VERSION (версия браузера)
+> - BROWSER_SIZE (размер окна браузера)
+> - BROWSER_MOBILE (мобильный браузер)
+> - REMOTE_DRIVER_URL (адрес удаленного сервера selenoid)
+> - THREADS (количество потоков)
+> - ALLURE_NOTIFICATIONS_VERSION (версия allure)
+
+## :computer: Запуск тестов из терминала
+
+Команда для локального запуска:
+```
 gradle clean test
 ```
 
-Run tests with not filled remote.properties:
-```bash
-gradle clean -DremoteDriverUrl=https://%s:%s@selenoid.autotests.cloud/wd/hub/ -DvideoStorage=https://selenoid.autotests.cloud/video/ -Dthreads=1 test
-```
+## :bar_chart: Отчеты
 
-Serve report:
-```bash
-allure serve build/allure-results
-```
+### <img width="3%" title="Allure" src="img/logo/Allure.svg"> Allure
+
+#### Главная страница
+
+<img src="img/screen/Screenshot_22.jpg" alt="Allure"/>
+
+#### Графики
+
+<img src="img/screen/Screenshot_24.jpg" alt="Allure"/>
+
+#### Тесты
+
+<img src="img/screen/Screenshot_23.jpg" alt="Allure"/>
+
+### <img width="3%" title="Telegram" src="img/logo/Telegram.svg"> Telegram
+
+Настроена отправка оточета ботом в Telegram
+
+<img src="img/screen/Screenshot_25.jpg" alt="Telegram"/>
+
+## :movie_camera: Видео с прогоном тестов
+
+В отчетах Allure для каждого теста прикреплен не только скриншот, но и видео прохождения теста
+
+<p align="center">
+  <img title="Video" src="img/gif/c889306c72f897b1.gif">
+</p>
 
 
-###### For further development there are some example tests in src/test/java/cloud.autotests/tests/demowebshop
-* remove @Disabled("...") annotation to run tests
-```bash
-gradle clean demowebshop
-```
-
-:heart: <a target="_blank" href="https://qa.guru">qa.guru</a><br/>
-:blue_heart: <a target="_blank" href="https://t.me/qa_automation">t.me/qa_automation</a>
